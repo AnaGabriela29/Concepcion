@@ -1,0 +1,262 @@
+:root{
+    --color-blue-gray:rgb(64, 78, 103);
+    --color-sky-blue: rgb(20, 124, 174);
+    --color-sky-blue-dark: rgba(64, 78, 103,0.5);
+    --color-blue-gray-light:rgb(70, 84, 108);
+    --color-blue-dark:rgb(37, 39, 51);
+    --color-green:rgb(40, 167, 69);
+    --color-yellow:rgb(255, 193, 7);
+    --color-purple:rgb(152, 28, 122);
+    --color-blue: rgb(34, 63, 143);
+    --color-gray:rgba(175, 181, 192);
+    --color-gray-light :rgba(175, 181, 192,0.5);
+    --color-white: rgb(255,255,255);
+}
+
+@font-face {
+    font-family: 'GFS Didot';
+    src: url('../colegio/images/fonts/GFS_Didot/GFSDidot-Regular.ttf') format('ttf');
+    /* Agrega otros formatos si los tienes */
+    font-weight: normal; /* Peso de la fuente */
+    font-style: normal; /* Estilo de la fuente */
+}
+body{
+    font-family: 'GFS Didot';
+}
+
+.bg-color-blue-gray{
+    background-color: var(--color-blue-gray) !important;
+}
+.bg-color-sky-blue{
+    background-color: var(--color-sky-blue) !important;
+}
+.bg-color-blue-dark{
+    background-color: var(--color-blue-dark) !important;
+}
+.bg-color-blue-dark-light{
+    background-color: var(--color-blue-gray-light) !important;
+}
+.bg-color-green{
+    background-color: var(--color-green) !important;
+}
+.bg-color-yellow{
+    background-color: var(--color-yellow) !important;
+}
+.bg-color-purple{
+    background-color: var(--color-purple) !important;
+}
+.bg-color-blue{
+    background-color: var(--color-blue) !important;
+}
+.bg-color-gray{
+    background-color: var(--color-gray);
+}
+.bg-color-gray-light{
+    background-color: var(--color-gray-light) !important;
+}
+.bg-color-white{
+    background-color: var(--color-white);
+}
+.color-blue-gray{
+    color: var(--color-blue-gray) !important;
+}
+.color-blue-dark{
+    color: var(--color-blue-dark) !important;
+}
+.color-blue-dark-light{
+    color: var(--color-blue-gray-light) !important;
+}
+.color-green{
+    color: var(--color-green) !important;
+}
+.color-sky-blue{
+    color: var(--color-sky-blue) !important;
+}
+.color-yellow{
+    color: var(--color-yellow) !important;
+}
+.color-purple{
+    color: var(--color-purple) !important;
+}
+.color-blue{
+    color: var(--color-blue) !important;
+}
+.color-gray{
+    color: var(--color-gray);
+}
+.color-white{
+    color: var(--color-white);
+}
+
+.gfs-didot-regular{
+    font-family: "GFS Didot", serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  /* estilos para el nav admin */
+.sidebar-item {
+    transition: margin 0.3s ease, background-color 0.3s ease, border-radius 0.3s ease, color 0.3s ease;
+}
+  .sidebar-item:hover {
+    background-color: var(--color-sky-blue-dark);    
+    margin: 0 1rem;
+    border-radius: 1rem;
+    color: white;    
+}
+
+.sidebar-item:hover .sidebar-link {
+    color: white; /* Cambia el color del texto a blanco */
+}
+/* Cambiar el color de fondo del menú cuando se expande */
+.sidebar-link[aria-expanded="true"] {
+    border-radius:1rem ;
+    /* background-color:var(--color-sky-blue-dark); */
+}
+.sidebar-link[aria-expanded="true"] + .sidebar-dropdown {
+    border-radius:1rem ;
+    /* background-color: var(--color-sky-blue-dark); */
+}
+.sidebar-item .sidebar-dropdown .sidebar-item a:hover {
+    color: white !important; /*Cambia el color del texto a blanco*/
+}
+
+.sidebar-item:hover .sidebar-dropdown .sidebar-item i {
+    color: white !important; /*Cambia el color del icono a blanco*/
+}
+
+/* ================================================ */
+/* ========== modulo de Asignacion =========================== */
+/* ================================================ */
+.box-asignacion-icon{
+    font-size: 4rem;
+}
+
+.box-asignacion{
+    border-radius: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;    
+}
+
+.box-asignacion:hover{
+    background-color: rgb(175, 181, 192);
+    transform: scale(1.05);
+}
+
+.select-box-asiganacion{
+    background-color: var(--color-sky-blue) !important;
+}
+
+/* estilos para los formularios */
+.modal-body form, .modal-content{
+    background-color: var(--color-sky-blue);
+    color: var(--color-white);
+}
+
+.modal-body .table tbody tr td{
+    background-color: var(--color-sky-blue);
+    color: var(--color-white    );
+}
+
+/* ================================================ */
+/* ========== modulo de Pagos =========================== */
+/* ================================================ */
+
+.box-pay{
+    /* padding: 2rem; */
+    position: relative; 
+    border-radius: 1rem;   
+    width: 10rem;
+    height: 10rem;
+    color: white;
+    background-color: var(--color-sky-blue);    
+}
+.box-pay a:hover{
+    transform: scale(1.05);
+}
+.icon-pay{
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    font-size: 4rem;
+    opacity: 1  ;    
+    color: var(--color-white);
+}
+
+.text-wrap {
+    white-space: normal;
+    word-break: break-word;
+    max-width: 200px;
+}
+.students-late-payments h6{
+    padding: 0.5rem;
+    color: white;
+    text-align: center;
+    background-color: var(--color-sky-blue);
+    border-radius: 1rem;
+}
+
+/* Estilos para el drop */
+/* Estilo para el área de arrastrar y soltar */
+.drop-area {
+    border: 2px dashed #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .drop-area.dragover {
+    background-color: #f0f0f0;
+  }
+  .btn-excel-download:hover,.shadow-box:hover {
+    color: white !important;
+    box-shadow: rgba(255, 255, 255, 0.25) 0px 30px 60px -12px inset, rgba(255, 255, 255, 0.3) 0px 18px 36px -18px inset;   
+    scale: 1.05; 
+  }  
+  /* Estilo para la tabla de datos cargados */
+  #uploaded-data-table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+  }
+  
+  #uploaded-data-table th, #uploaded-data-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  #uploaded-data-table th {
+    background-color: #f2f2f2;
+    text-align: left;
+  }
+  
+  /* Estilo para el contenedor de la tabla */
+#table-container {
+    max-height: 400px; /* Aumenta la altura máxima */
+    overflow-y: auto;
+    margin-top: 20px;
+  }
+  
+  /* Asegúrate de que la tabla ocupe el 100% del contenedor */
+  #uploaded-data-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  #uploaded-data-table th, #uploaded-data-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  #uploaded-data-table th {
+    background-color: #f2f2f2;
+    text-align: left;
+  }
+  
+  /* estilo para el select de card masivos */
+  .select-lista-roles{
+    width: 100% !important;
+
+  }

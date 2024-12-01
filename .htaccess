@@ -1,0 +1,19 @@
+# Deshabilitar listado de directorios
+Options All -Indexes
+
+# Activar motor de reescritura
+RewriteEngine on
+
+# Reglas de reescritura para rutas amigables
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]
+
+# Configuración de PHP (específica para servidores que lo permiten en .htaccess)
+php_flag display_errors Off
+php_value error_log /home/colegiou/logs/error.log
+
+# Denegar acceso a archivos .env
+<FilesMatch "\.env">
+    Require all denied
+</FilesMatch>

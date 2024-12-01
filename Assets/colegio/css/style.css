@@ -1,0 +1,890 @@
+
+/* ******* custom propertis ******** */
+:root{
+    --first-color:rgb(5, 31, 92);
+    --first-alpha-color:rgba(5, 31, 92, 0.90);
+    --color-yellow:rgb(255, 193, 7);
+    --color-purple:rgb(152, 28, 122);
+    --color-blue: rgb(34, 63, 143);
+    --color-gray:rgb(175, 181, 192);
+
+    --second-color:rgb(20,25,45);
+    --second-alpha-color:rgb(20,25,45,0.75);
+    --third-color: rgb(80,20,100);
+    --third-alpha-color: rgba(80,20,100,0.75);
+
+    --link-color: rgb(80,158,227);
+    --link-alpha-color: rgba(80,158,227,0.75);
+
+    --bg-color: rgb(245,245,245);
+    --bg-alpha-color:rgba(245,245,245,0.75);
+}
+
+@font-face {
+    font-family: 'GFS Didot';
+    src: url('../colegio/images/fonts/GFS_Didot/GFSDidot-Regular.ttf') format('ttf');
+    /* Agrega otros formatos si los tienes */
+    font-weight: normal; /* Peso de la fuente */
+    font-style: normal; /* Estilo de la fuente */
+}
+
+/* ******* Reset Styles ****** */
+body{
+    font-family: 'GFS Didot', sans-serif;
+}
+
+a{
+    color: var(--link-color);
+    transition: all 0.3s ease-out;
+}
+
+a:hover{
+    color: var(--first-color);
+ 
+}
+
+/* ********* bootstrap styles ******** */
+.bg-dark{
+    background-color: var(--second-color) !important;
+}
+
+.carousel-caption {
+    z-index: 1;
+}
+
+.carousel-control-prev-icon{
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23d90062'%3e%3cpath d='M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z'/%3e%3c/svg%3e")
+  }
+  
+  .carousel-control-next-icon{
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23d90062'%3e%3cpath d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e")
+  }
+
+.dropdown-item{
+    color: var(--first-alpha-color);
+    font-weight: bold;
+    transition: all 0.3s ease-out;
+}
+
+.dropdown-item:hover{
+    color: var(--third-alpha-color);
+    font-weight: bold;
+    
+}
+
+.navbar-brand img {
+    width: auto;
+    height: 3rem;
+}
+
+.imagen-red-social{
+    fill: white;
+ 
+}
+
+.navbar-dark .navbar-toggler{
+    --bs-navbar-toggler-icon-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    transition: all 0.3s ease-out;
+}
+
+.navbar-dark .navbar-toggler:hover{
+    --bs-navbar-toggler-icon-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28217, 0, 98, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    opacity: 0.75;
+}
+
+.nav-item{
+    
+    transition:  all 0.3s ease-out;
+}
+
+.nav-item:hover{
+background-color: var(--first-alpha-color);
+}
+
+.nav-link{
+    margin-left: 0.5rem;
+    color: var(--bg-alpha-color);
+    font-size: 1.15rem;
+    font-weight: bold;
+
+}
+
+.nav-link:hover{
+    color: var(--color-yellow);
+    border-bottom-color: var(--color-yellow);
+}
+/* ********* My Styles ****** */
+
+.bg-alpha-color{
+    background-color: var(--bg-alpha-color);
+}
+.bg-first-alpha-color{
+    background-color: var(--first-alpha-color);
+}
+
+.bg-second-alpha-color{
+    background-color: var(--second-alpha-color);
+}
+
+.bg-yellow{
+    background-color: var(--color-yellow);
+}
+
+.bg-color{
+    background-color: var(--bg-color);
+}
+.page_active{
+    color: var(--bg-color);
+    border-bottom: 0.1rem solid var(--bg-color);
+}
+.color-purple{
+    color: var(--color-purple);
+}
+.bg-purple{
+    background-color: var(--color-purple);
+}
+
+
+.bg-gradient-blue-green{
+    background-color: rgba(83,184,152,1); 
+    background-image: linear-gradient(135deg,rgba(47,145,224,0.91),
+    rgba(7,31,51,0.97) 79%
+    );
+    background-image: linear-gradient(
+     131deg, rgba(28,118,173,0.92),
+     rgba(83,184,152,1)
+    );
+ 
+ }
+
+ .bg-hero-image{
+    background-image: var(--bg-image);
+    background-repeat:no-repeat ;
+    background-size: cover;
+    background-position: center;
+ }
+
+.bg-third-color{
+    background: var(--third-color);
+}
+
+.text-third{
+    color: var(--third-color);
+}
+
+.text-first-color{
+    color: var(--first-color);
+}
+
+.cambiar-color:hover svg{
+    fill: aqua !important;
+}
+/* estilos para el carusel */
+.navbar{
+    height: 5rem;
+}
+ 
+.carrusel-inner img{
+    object-fit: cover;
+}
+/* .carousel-inner, .section-slide{
+    height: calc(100vh - 5rem);
+} */
+/* Estilos para el banner animado */
+/* Contenedor que oculta el desbordamiento */
+.main-phrase {
+    position: relative;
+    margin-left:2rem ;
+    width: 60%;
+    max-width: 75%;
+    height: 30px; /* Ajusta según lo necesario */
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    color: white;
+    font-size: 1.2rem;
+}
+
+/* Texto animado */
+.animated-text {
+    color: white;
+    position: absolute;
+    white-space: nowrap;
+    will-change: transform;
+    animation: slide-left 20s linear infinite;
+}
+
+/* Animación para deslizar hacia la izquierda */
+@keyframes slide-left {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+
+/* small devices (landscape phones, 576px and up)*/
+
+/* ======================================= */
+/* Estilos para el modulo de home */
+/* ======================================= */
+/* Corrección de imágenes en el slider */
+.object-fit-cover {
+    object-fit: cover;
+    height: 400px; /* Define una altura uniforme */
+}
+
+/* Propuesta educativa */
+.section-proposal p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+/* Noticias recientes */
+.section-news-recent .border {
+    background-color: rgba(255, 255, 255, 0.9);
+    transition: transform 0.3s;
+}
+.section-news-recent .border:hover {
+    transform: scale(1.02);
+}
+
+/* Ubicación */
+.section-ubication {
+    background-color: #007bff;
+}
+.section-ubication h3 {
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+/* Ajustes de media queries */
+@media (max-width: 768px) {
+    .object-fit-cover { 
+        height: 250px; /* Reducir altura en pantallas pequeñas */
+    }
+    .section-proposal p {
+        font-size: 1rem;
+    }
+    .section-ubication p {
+        font-size: 0.9rem;
+    }
+}
+
+
+
+/* ======================================= */
+/* Estilos para el modulo de colaboradores */
+/* ======================================= */
+
+.collaborators-description{
+    max-width: 50rem;
+    margin: 0 auto;
+}
+
+/* Estilos generales */
+.section_collaborators_body {
+    padding: 2rem 0;
+}
+
+/* Tarjetas de Colaboradores */
+.team-card {
+    background-color: #f8f9fa; /* Fondo claro */
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.team-card:hover {
+    transform: translateY(-10px); /* Mueve ligeramente hacia arriba */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Sombra más intensa */
+}
+
+/* Imagen de la tarjeta */
+.team-card img {
+    width: 100%;
+    height: 200px; /* Altura fija */
+    object-fit: cover; /* Asegura que la imagen mantenga sus proporciones */
+    transition: transform 0.3s ease;
+}
+
+.team-card:hover img {
+    transform: scale(1.1); /* Zoom suave */
+}
+
+/* Contenido de la tarjeta */
+.team-card-body {
+    padding: 1rem;
+    text-align: center;
+}
+
+.team-card-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.team-card-text {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #666;
+}
+
+/* Título de Sección */
+.section-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #007bff; /* Azul Bootstrap */
+    margin-bottom: 2rem;
+}
+
+/* Animaciones de entrada */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.team-card {
+    opacity: 0; /* Inicia invisible */
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+.team-card:nth-child(1) {
+    animation-delay: 0.1s; /* Retardo de animación */
+}
+
+.team-card:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.team-card:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+    .team-card img {
+        height: 150px; /* Reducir altura en dispositivos pequeños */
+    }
+}
+
+
+/* ======================================= */
+/* Estilos para el modulo de contactos */
+/* ======================================= */
+/* Sección Contacto */
+.section-contact {
+    background-color: #f8f9fa;
+}
+
+.info-contacto {
+    color: #495057;
+}
+
+.info-contacto h4 {
+    font-size: 1.5rem;
+}
+
+.info-contacto p {
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+/* Formulario */
+#frmContacto {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#frmContacto h4 {
+    font-size: 1.5rem;
+}
+
+#frmContacto .form-label {
+    font-size: 1rem;
+    color: #495057;
+}
+
+#frmContacto .form-control {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    transition: border-color 0.3s ease;
+}
+
+#frmContacto .form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+#frmContacto button {
+    background-color: #007bff;
+    border: none;
+    padding: 0.8rem;
+    font-size: 1rem;
+    color: #ffffff;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#frmContacto button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+/* Mapa */
+.map-container {
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+/* 
+ */
+ /* ======================================= */
+/* Estilos para el modulo de noticias */
+/* ======================================= */
+/* Sección de noticias */
+.section-news {
+    background-color: #f8f9fa; /* Fondo claro */
+    padding: 2rem 0;
+}
+
+/* Tarjetas de noticias */
+.news-card {
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: #ffffff;
+}
+
+.news-card:hover {
+    transform: scale(1.05); /* Aumenta ligeramente el tamaño */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); /* Sombra más intensa */
+}
+
+/* Imagen de la tarjeta */
+.news-card img {
+    width: 100%;
+    height: 200px; /* Altura uniforme */
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.news-card:hover img {
+    transform: scale(1.1); /* Zoom suave en la imagen */
+}
+
+/* Contenido de la tarjeta */
+.news-content h4 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    transition: color 0.3s ease;
+}
+
+.news-card:hover h4 {
+    color: #007bff; /* Cambia el color del título al pasar el mouse */
+}
+
+.news-content p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.news-content small {
+    font-size: 0.8rem;
+}
+
+/* Animación de entrada */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Aplica la animación a las tarjetas */
+.news-card {
+    opacity: 0;
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+/* Retrasar la animación para que las tarjetas aparezcan una tras otra */
+.news-card:nth-child(1) {
+    animation-delay: 0.1s;
+}
+.news-card:nth-child(2) {
+    animation-delay: 0.2s;
+}
+.news-card:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+/* estilos para la seccion de reglamento;  */
+/* Sección de Documentos */
+.section-regulations {
+    background-color: #f8f9fa; /* Fondo claro */
+}
+
+/* Tarjetas de Documentos */
+.document-card {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.document-card:hover {
+    transform: translateY(-5px); /* Efecto "flotar" */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Sombra más intensa */
+}
+
+/* Icono de Documento */
+.document-icon {
+    font-size: 3rem;
+    color: #007bff; /* Azul Bootstrap */
+    margin-bottom: 1rem;
+}
+
+/* Título del Documento */
+.document-title {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+/* Botón de Descargar */
+.document-card a {
+    text-decoration: none;
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+    .document-card {
+        padding: 1rem;
+    }
+    .document-icon {
+        font-size: 2.5rem;
+    }
+    .document-title {
+        font-size: 1rem;
+    }
+}
+
+
+/* Estilos para la propuesta educativa */
+/* Sección de Propuesta Educativa */
+.section-proposal {
+    background-color: #f8f9fa;
+}
+
+.section-proposal h2 {
+    font-size: 2.5rem;
+}
+
+.section-proposal p {
+    font-size: 1.1rem;
+    color: #6c757d;
+}
+
+/* Pilares de Educación */
+.list-group-item {
+    font-size: 1rem;
+    color: #495057;
+    background-color: transparent;
+    border: none;
+}
+
+/* Tarjetas de Propuesta */
+.proposal-card {
+    text-align: center;
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.proposal-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.proposal-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.proposal-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.proposal-text {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #666;
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+    .proposal-card {
+        padding: 1.5rem;
+    }
+    .proposal-icon {
+        font-size: 2.5rem;
+    }
+    .proposal-title {
+        font-size: 1.1rem;
+    }
+    .proposal-text {
+        font-size: 0.85rem;
+    }
+}
+
+/* Estilos para la propuesta educativa */
+/* Sección "Nosotros" */
+.section-us {
+    background-color: #f8f9fa;
+}
+
+/* Encabezado de la Sección */
+.section-us h2 {
+    font-size: 2.5rem;
+}
+
+.section-us p {
+    font-size: 1.1rem;
+    color: #6c757d;
+}
+
+/* Listas de Características */
+.list-group-item {
+    font-size: 1rem;
+    color: #495057;
+    background-color: transparent;
+    border: none;
+}
+
+/* Tarjetas de Misión, Visión y Valores */
+.us-card {
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.us-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.us-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.us-card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.us-card-text {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #666;
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+    .us-card {
+        padding: 1.5rem;
+    }
+    .us-icon {
+        font-size: 2.5rem;
+    }
+    .us-card-title {
+        font-size: 1.1rem;
+    }
+    .us-card-text {
+        font-size: 0.85rem;
+    }
+}
+
+/* estilos para el chatbot */
+/* Botón de Chat */
+.chatbot-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #007bff;
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    z-index: 9999;
+}
+
+.chatbot-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.chatbot-button i {
+    font-size: 1.5rem;
+}
+
+/* Ventana del Chat */
+.chatbot-window {
+    width: 350px;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    font-family: Arial, sans-serif;
+    z-index: 9999;
+}
+
+.chat-header {
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.chat-body {
+    flex-grow: 1;
+    padding: 1rem;
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.message {
+    display: flex;
+    align-items: flex-end;
+    margin-bottom: 10px;
+}
+
+.bot-message {
+    flex-direction: row;
+}
+
+.user-message {
+    flex-direction: row-reverse;
+}
+
+.icon {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+}
+
+.message-text {
+    max-width: 70%;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+}
+
+.bot-message .message-text {
+    background: #e9ecef;
+    color: #495057;
+}
+
+.user-message .message-text {
+    background: #007bff;
+    color: white;
+}
+
+.chat-footer {
+    display: flex;
+    align-items: center;
+   
+}
+
+.chat-footer input {
+    flex-grow: 1;
+    border-radius: 30px;
+    padding: 10px 15px;
+    border: 1px solid #ced4da;
+}
+
+.chat-footer button {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* Responsividad */
+@media (max-width: 768px) {
+    .chatbot-window {
+        width: 90%;
+        height: 100%; /* Ocupa toda la altura */
+        bottom: 0;
+        right: 0;
+        border-radius: 0;
+    }
+    .chat-body{
+        height: 800px;
+    }
+}
+
+
+
+@media (min-width: 576px){
+
+}
+
+/* //Mediun devices (tablets 768px and up) */
+@media(min-width:768px){
+
+}
+/* // large devices (desktops 992px and up) */
+@media(min-width: 992px){
+    .nav-item:hover{
+        background-color: transparent;
+        }
+}
+
+/* x-large devices (large desktops 1200px and up) */
+@media (min-width: 1200px) {
+    
+}
