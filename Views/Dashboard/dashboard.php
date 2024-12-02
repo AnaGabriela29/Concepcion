@@ -73,16 +73,7 @@
             </div>
         <?php } ?>      
     </section>
-    <section class="container">
-    <div class="row justify-content-center ">
-        <div class="col-12 col-md-6 chart-container">
-            <canvas class="graf-day" id="dailyAttendanceChart"></canvas>
-        </div>
-        <div class="col-12 col-md-6 chart-container">
-            <canvas class="graf-month" id="monthlyPaymentsChart"></canvas>
-        </div>    
-    </div>
-    </section>
+    
 
 
     <section class="">

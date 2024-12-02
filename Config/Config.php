@@ -19,8 +19,8 @@
 		define('DB_HOST', 'localhost');
 		define('DB_USER', 'root');
 		define('DB_PASSWORD', '');
-		define('DB_NAME', 'unimatbd');
-		define('BASE_URL', 'http://localhost/unimat');
+		define('DB_NAME', 'concepcionbd');
+		define('BASE_URL', 'http://localhost/concepcion');
 	} else {
 		// Configuración para producción		
 		define('DB_HOST', $_ENV['DB_HOST']);
@@ -42,16 +42,16 @@
 
 
 	//Datos envio de correo
-	const NOMBRE_REMITENTE = "Colegio UNIMAT";
-	const EMAIL_REMITENTE = "colegiounimat@colegiounimat.com";//tiene que cambiar cuando este en produccion
-	const NOMBRE_EMPESA = "Colegio UNIMAT";
-	const WEB_EMPRESA = "www.colegiounimat.com";
+	const NOMBRE_REMITENTE = "Colegio Concepcion";
+	const EMAIL_REMITENTE = "colegioconcepcion@colegioconcepcion.com";//tiene que cambiar cuando este en produccion
+	const NOMBRE_EMPESA = "Colegio Concepcion";
+	const WEB_EMPRESA = "www.concepcion.com";
 
 	const DESCRIPCION = "Colegios unimat, consorcio educativo";
 	const SHAREDHASH = "CoelgioUNIMAT";
 
 	//Datos Empresa
-	const DIRECCION = "Av. 28 de julio N° 665";
+	const DIRECCION = "San vicente de Cañete";
 	const TELEMPRESA = "+(056)215487";
 	const WHATSAPP = "998589309";
 	const EMAIL_EMPRESA = "colegiounimat@colegiounimat.com";
@@ -73,11 +73,17 @@
 	const MGRADOS = 5;
 	const MAULAS = 6;
 	const MCONFIGURACION = 7;
-	const MNOTAS = 8;
-	const MASISTENCIA=9;	
-	const MCONTROLASISTENCIA=10;
-	const MPAGOS=11;
+	const MNOTAS = 8;	
 	const MDPAGINAS = 10;
+
+	//tablas de las notas por cursos
+	const TABLA_CURSO_1 = "nota_matematica";
+	const TABLA_CURSO_2 = "nota_comunicacion";
+	const TABLA_CURSO_3 ="nota_ciencia";
+	const TABLA_CURSO_4 = "nota_desarrollo_personal";
+	const TABLA_CURSO_5 = "nota_arte";
+	const TABLA_CURSO_6 = "nota_ingles";
+	const TABLA_CURSO_7= "nota_fisica";	
 
 	//Periodo
 	const PERIODO=1;
@@ -107,8 +113,8 @@
 	const PROBUSCAR = 4;
 
 	//REDES SOCIALES
-	const FACEBOOK = "https://www.facebook.com/I.E.P.UNIMAT";
-	const INSTAGRAM = "https://www.facebook.com/I.E.P.UNIMAT";
+	const FACEBOOK = "https://www.facebook.com/";
+	const INSTAGRAM = "https://www.facebook.com/";
 
 	// CONFIGURACION DE ASISTENCIA
 	define('HORAINICIOASISTENCIA', '02:00:00');

@@ -2,7 +2,7 @@
  <aside id="sidebar" class="bg-color-sky-blue">
      <div class="h-100 ">
          <div class="sidebar-logo d-flex justify-content-center bg-color-sky-blue">
-             <a href="<?=base_url()?>"><img class="logotipo-img" src="<?=media()?>/images/logo_unimat.webp" alt="logo unimat"></a>
+             <a href="<?=base_url()?>"><img class="logotipo-img" src="<?=media()?>/images/logo_concepcion.webp" alt="logo unimat"></a>
          </div>
 
          <div class="d-flex justify-content-center align-items-center flex-column">
@@ -14,10 +14,7 @@
          <ul class="sidebar-nav gfs-didot-regular bg-color-sky-blue">
 
              <li class="sidebar-item" ata-toggle="tooltip" title="Estamos trabajando en esta pagina">
-                 <a href="<?= base_url()?>/home" class="sidebar-link color-gray">
-                     <i class="bi bi-browser-chrome"></i>
-                     Ir al Sitio Web
-                 </a>
+                 
              </li>
              <?php if (!empty($_SESSION['permisos'][1]['r'])) { ?>
                  <li class="sidebar-item">
@@ -49,7 +46,7 @@
                             <li class="sidebar-item">
                                 <a href="<?= base_url() ?>/alumnos" class="sidebar-link color-gray">
                                     <i class="bi bi-backpack2-fill"></i>
-                                    Alumnos
+                                    Alumnas
                                 </a>
                             </li>
             <?php } ?>
@@ -106,36 +103,7 @@
                          Notas
                      </a>
                  </li>
-             <?php } ?>
-
-             <?php if (!empty($_SESSION['permisos'][9]['r'])) { ?>
-                 <li class="sidebar-item">
-                     <a href="<?= base_url() ?>/Asistencia" class="sidebar-link color-gray">
-                     <i class="bi bi-camera2"></i>
-                         Asistencia
-                     </a>
-                 </li>
-             <?php } ?>
-
-             <?php if (!empty($_SESSION['permisos'][10]['r'])) { ?>
-                 <li class="sidebar-item">
-                     <a href="<?= base_url() ?>/Controlasistencia" class="sidebar-link color-gray">
-                     <i class="bi bi-menu-button-wide-fill"></i>
-                         Control Asistencia
-                     </a>
-                 </li>
-             <?php } ?>
-
-             <?php if (!empty($_SESSION['permisos'][11]['r'])) { ?>
-                 <li class="sidebar-item">
-                     <a href="<?= base_url() ?>/Pagos" class="sidebar-link color-gray">
-                     <i class="bi bi-menu-button-wide-fill"></i>
-                         Pagos
-                     </a>
-                 </li>
-             <?php } ?>
-
-
+             <?php } ?>          
          </ul>
      </div>
  </aside>
@@ -148,7 +116,7 @@
          </button>
 
          <div class="">
-             <h2 class="fs-3 m-0">Colegio Unimat</h2>
+             <h2 class="fs-3 m-0">Colegio Concepcion</h2>
          </div>
 
          <!-- Default dropstart button -->

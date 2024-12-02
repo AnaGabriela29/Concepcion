@@ -20,15 +20,12 @@
     <!-- Data table plugin-->
     <script type="text/javascript" src="<?= media(); ?>/js/plugins/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="<?= media(); ?>/js/plugins/dataTables.bootstrap5.min.js"></script>
-
     <script type="text/javascript" src="<?= media(); ?>/js/plugins/dataTables.buttons.min.js"></script>
     <script type="text/javascript" src="<?= media(); ?>/js/plugins/buttons.bootstrap5.min.js"></script>
     <script type="text/javascript" src="<?= media(); ?>/js/plugins/jszip.min.js"></script>
     <script type="text/javascript" src="<?= media(); ?>/js/plugins/pdfmake.min.js"></script>
     <script type="text/javascript" src="<?= media(); ?>/js/plugins/vfs_fonts.js"></script>
-    <script type="text/javascript" src="<?= media(); ?>/js/plugins/buttons.html5.min.js"></script>
-
- 
+    <script type="text/javascript" src="<?= media(); ?>/js/plugins/buttons.html5.min.js"></script> 
     <!-- <script type="text/javascript" src="<?= media();?>/js/plugins/functions_admin.js"></script> -->
     <script src="<?= media(); ?>/js/<?= $data['page_functions_js']; ?>"></script>
   </body>

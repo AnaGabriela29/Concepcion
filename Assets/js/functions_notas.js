@@ -2,6 +2,7 @@ let tableNotas;
 let idAula;
 let idCurso;
 let idGrado;
+let bimestre;
 let divLoading = document.querySelector("#divLoading");
 
 document.addEventListener('DOMContentLoaded', function(){
@@ -101,9 +102,10 @@ document.addEventListener('DOMContentLoaded', function(){
     if(document.querySelector('.dataCurso')){
         idCurso=document.querySelector('.dataCurso').dataset.id;
     }
-
-
-       
+    if(document.getElementById('selectBimestres')){
+        bimestre=document.getElementById('selectBimestres').value;
+    }
+           
 	tableNotas = $('#tableNotas').DataTable( {
 		"aProcessing":true,
 		"aServerSide":true,
@@ -111,7 +113,7 @@ document.addEventListener('DOMContentLoaded', function(){
         	"url": "//cdn.datatables.net/plug-ins/1.13.7/i18n/es-ES.json"
         },
         "ajax":{
-            "url": " "+base_url+"/Notas/getNotas/"+idAula+"/"+idGrado+"/"+idCurso,
+            "url": " "+base_url+"/Notas/getNotas/"+idAula+"/"+idGrado+"/"+idCurso+"/"+bimestre,
             "dataSrc":""
         },
         "columns":[
@@ -119,10 +121,6 @@ document.addEventListener('DOMContentLoaded', function(){
             {"data":"identificacion"},
             {"data":"nombres"},
             {"data":"apellidos"},
-            {"data":"nota_1"},
-            {"data":"nota_2"},
-            {"data":"nota_3"},
-            {"data":"nota_4"},
             {"data":"status"},
             {"data":"options"}
         ],

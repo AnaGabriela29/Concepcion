@@ -10,7 +10,10 @@
                 <form id="formNotas" name="formNotas" class="form-horizontal row">
                     <input type="hidden" id="csrf" class="csrf" name="csrf" value="<?php echo $data['token']?>">
                     <input type="hidden" id="idNota" name="idNota" value="">                              
-                    
+                    <div class="box-competencias">
+                        
+
+                    </div>
                     <div class="row">
                         <div class="box-nota-aux d-flex flex-column col-12 col-md-6 mb-3">
                             <label for="listaAlumnos">Nombre del Alumno: <span id="selectNombreAlumno"> </span></label>
@@ -24,25 +27,24 @@
                         </div> 
                                         
                         <div class=" d-flex flex-column col-6 col-md-4 mb-3">
-                            <label for="nota1">Nota 1:</label>
-                            <input id="nota1" type="number" min="0" max="20" class="nota1" name="nota1" value="">                       
-                        </input>
+                            <label for="nota">Nota</label>
+                            <input id="nota" type="number" min="0" max="20" class="nota" name="nota" value="">                       
+                            </input>
                         </div>
-                        <div class=" d-flex flex-column col-6 col-md-4 mb-3">
-                            <label for="nota2">Nota 2:</label>
-                            <input id="nota2" type="number" class="nota2" min="0" max="20" name="nota2" value="">                       
-                        </input>
-                        </div> 
-                        <div class=" d-flex flex-column col-6 col-md-4 mb-3">
-                            <label for="nota3">Nota 3:</label>
-                            <input id="nota3"  min="0" max="20" class="nota3" min="0" max="20" name="nota3" value="">                       
-                        </input>
+                        <div class="">
+                            <label for="tema">Escriba el tema</label>
+                            <input type="text" name="tema" class="form-control" placeholder="escriba el tema" >
                         </div>
-                        <div class=" d-flex flex-column col-6 col-md-4 mb-3">
-                            <label for="nota4">Nota 4:</label>
-                            <input id="nota4" class="nota4" name="nota4" min="0" max="20">                       
-                        </input>
-                        </div>                                                            
+                        <div>
+                            <label for="selectbimestres fw-bold">Elija un bimestre</label>
+                            <select class="form-select" name="bimestres" id="selectBimestres">
+                                <option value="">--Seleccione un bimestre--</option>
+                                <option value="primerbimestre" selected>primer bimestre</option>
+                                <option value="segundobimestre">segundo bimestre</option>
+                                <option value="tercerbimestre">tercer bimestre</option>
+                                <option value="cuartobimestre">cuarto bimestre</option>                
+                            </select>
+                        </div>                                                  
 
                         <div class="form-group d-flex flex-column col-6 col-md-4 mb-3">
                             <label for="exampleSelect1">Estado</label>

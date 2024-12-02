@@ -132,6 +132,7 @@ class Notas extends Controllers
             $data['Aula'] = $this->model->getAula($id_aula);
             $data['Curso'] = $this->model->getCurso($id_curso);
             $data['Grado'] = $this->model->getGrado($id_grado);
+            $data['competencias']=$this->model->getCompetencias($id_curso);
             $data['page_functions_js'] = "functions_notas.js";            
             $this->views->getView($this,"notasAdmin",$data);            
         }
@@ -145,14 +146,36 @@ class Notas extends Controllers
             $id_grado = intval($arrParams[1]);
             $id_curso = intval($arrParams[2]);
             
-            $arrData=$this->model->selectNotas($id_aula, $id_grado, $id_curso, PERIODO);
+            switch ($id_curso){
+                case 1:
+                    $tabla = TABLA_CURSO_1;
+                    break;
+                case 2:
+                    $tabla = TABLA_CURSO_2;
+                    break;
+                case 3:
+                    $tabla = TABLA_CURSO_3;
+                    break;
+                case 4:
+                    $tabla = TABLA_CURSO_4;
+                    break;
+                case 5:
+                    $tabla = TABLA_CURSO_5;
+                    break;
+                case 6:
+                    $tabla = TABLA_CURSO_6;
+                    break;
+                case 7:
+                    $tabla = TABLA_CURSO_7;
+                    break;
+                default:
+                    $tabla = null;
+                    break;
+            }
+            
+            $arrData=$this->model->selectNotas($id_aula, $id_grado, $id_curso, $tabla, PERIODO);
 
-            for ($i=0; $i < count($arrData); $i++) {
-                $arrData[$i]['nota_1'] = $arrData[$i]['nota_1'] ?? " ";
-                $arrData[$i]['nota_2'] = $arrData[$i]['nota_2'] ?? " ";
-                $arrData[$i]['nota_3'] = $arrData[$i]['nota_3'] ?? " ";
-                $arrData[$i]['nota_4'] = $arrData[$i]['nota_4'] ?? " ";
-
+            for ($i=0; $i < count($arrData); $i++) {               
 
                 if($arrData[$i]['status'] == 1)
                 {
@@ -163,13 +186,9 @@ class Notas extends Controllers
 
                 if($_SESSION['permisosMod']['u']){
                     $btnView = '<button class="btn btn-secondary btn-sm " onClick="fntViewNota('.$arrData[$i]['id_nota'].')" title="Permisos"><i class="bi bi-eye-fill"></i></button>';
-                    $btnEdit = '<button class="btn btn-primary btn-sm " onClick="fntEditNota('.$arrData[$i]['id_nota'].')" title="Editar"><i class="bi bi-pencil"></i></button>';
-                }
-                if($_SESSION['permisosMod']['d']){
-                    $btnDelete = '<button class="btn btn-danger btn-sm " onClick="fntDelNota('.$arrData[$i]['id_nota'].')" title="Eliminar"><i class="bi bi-trash3"></i></button>
-                </div>';
-                }
-                $arrData[$i]['options'] = '<div class="text-center">'.$btnView.' '.$btnEdit.' '.$btnDelete.'</div>';
+                    
+                }                
+                $arrData[$i]['options'] = '<div class="text-center">'.$btnView.' '.'</div>';
             }
 
             echo json_encode($arrData, JSON_UNESCAPED_UNICODE);

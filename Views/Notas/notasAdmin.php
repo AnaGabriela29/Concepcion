@@ -26,8 +26,18 @@
         <div>
             <p>Aula: <span class="fs-5 dataAula" data-id="<?= $data['Aula']['id_aula']?>"><?= $data['Aula']['nombre'] ?></span></p>
         </div>
-        <div>
+        <div class="d-flex justify-content-between">
             <p>Curso: <span class="fs-5 dataCurso" data-id="<?= $data['Curso']['id_curso']?>"><?= $data['Curso']['nombre'] ?></span></p>
+            <div>
+              <label for="selectbimestres fw-bold">Elija un bimestre</label>
+              <select class="form-select" name="bimestres" id="selectBimestres">
+                <option value="">--Seleccione un bimestre--</option>
+                <option value="primerbimestre" selected>primer bimestre</option>
+                <option value="segundobimestre">segundo bimestre</option>
+                <option value="tercerbimestre">tercer bimestre</option>
+                <option value="cuartobimestre">cuarto bimestre</option>                
+              </select>
+            </div>
         </div>
         <div>
             <p>Grado: <span class="fs-5 dataGrado" data-id="<?= $data['Grado']['id_grado']?>"><?= $data['Grado']['nombre'] ?></span></p>
@@ -47,10 +57,6 @@
                           <th>Identificacion</th>
                           <th>Nombres</th>
                           <th>Apellidos</th>
-                          <th>nota 1</th>
-                          <th>nota 2</th>
-                          <th>nota 3</th>
-                          <th>nota 4</th>
                           <th>Estado</th>
                           <th>Acciones</th>
                         </tr>

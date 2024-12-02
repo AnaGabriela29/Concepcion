@@ -17,6 +17,7 @@ class NotasModel extends Mysql{
     private $intNota4;
     private $intStatus;
     private $intIdAsignacion;
+    private $strTabla;
 
     public function __construct()
     {
@@ -165,14 +166,15 @@ class NotasModel extends Mysql{
         return $request;
     }
 
-    public function selectNotas(int $aula, int $grado, int $curso, int $periodo ){
+    public function selectNotas(int $aula, int $grado, int $curso, string $tabla, int $periodo ){
         $this->intIdAula = $aula;
         $this->intIdGrado = $grado;
         $this->intIdCurso = $curso;
         $this->intIdPeriodo = $periodo;
+        $this->strTabla = $tabla;
         
-        $sql = "SELECT n.id_nota,u.identificacion, u.nombres, u.apellidos, n.nota_1, n.nota_2, n.nota_3, n.nota_4, n.status 
-                FROM nota n 
+        $sql = "SELECT n.id_nota,u.identificacion, u.nombres, u.apellidos, n.status 
+                FROM $this->strTabla n 
                 JOIN asignacion a ON n.id_asignacion=a.id_asignacion
                 JOIN usuario u ON a.id_usuario= u.id_usuario
                 WHERE a.id_aula = '{$this->intIdAula}' AND a.id_curso = '{$this->intIdCurso}' AND a.id_grado = '{$this->intIdGrado}' AND n.status != 0";
@@ -299,6 +301,12 @@ class NotasModel extends Mysql{
 			return $response;
     }
     
+    public function getCompetencias(int $id_curso){
+        $this->intIdCurso=$id_curso;
+        $sql="SELECT nombre_competencias FROM competencia WHERE id_curso='{$this->intIdCurso}'";
+        $request=$this->select_all($sql);
+        return $request;
+    }
     
 
 }

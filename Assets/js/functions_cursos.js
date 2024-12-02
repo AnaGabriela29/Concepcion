@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function(){
             if (objData.status) {
                 $('#modalFormCursos').modal("hide");
                 formCurso.reset();
-                Swal.fire("Cursos de alumno", objData.msg, "success");
+                Swal.fire("Cursos ", objData.msg, "success");
                 tableCursos.ajax.reload();
             } else {
                 Swal.fire("Error", objData.msg, "error");
