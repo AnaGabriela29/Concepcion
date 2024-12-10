@@ -138,28 +138,30 @@ document.addEventListener('DOMContentLoaded', function(){
         formNotas.onsubmit = function(e) {
             e.preventDefault();
         
+             // Obtener los valores del formulario
             let intIdNota = document.querySelector('#idNota').value;
             let strAlumno = document.querySelector('#listaAlumnos').value;
             let strDocente = document.querySelector('#listaDocentes').value;
-            let intNota1 = document.querySelector('#nota1').value;
-            let intNota2 = document.querySelector('#nota2').value;
-            let intNota3 = document.querySelector('#nota3').value;
-            let intNota4 = document.querySelector('#nota4').value;
+            let intNota = document.querySelector('#nota').value;  // Solo un campo de nota
+            let strTema = document.querySelector('input[name="tema"]').value;  // Campo de tema
+            let strBimestre = document.querySelector('#selectBimestres').value;  // Bimestre seleccionado
             let intStatus = document.querySelector('#listStatus').value;
+            let intCompetencia = document.querySelector('#competenciaSeleccionada').value;
         
+           // Validación de campos obligatorios
             if (intIdNota == "") {
-                if (strAlumno == '' || strDocente == '' || intStatus == '' || (intNota1 == '' && intNota2 == '' && intNota3 == '' && intNota4 == '')) {
-                    Swal.fire("Atención", "Complete campos obligatorios.", "error");
+                if (strAlumno == '' || strDocente == '' || intStatus == '' || intNota == '' || strTema == '' || strBimestre == '' || intCompetencia == '') {
+                    Swal.fire("Atención", "Complete los campos obligatorios.", "error");
                     return false;
                 }
-            } else if (intStatus == '' || (intNota1 == '' && intNota2 == '' && intNota3 == '' && intNota4 == '')) {
-                Swal.fire("Atención", "Complete campos obligatorios.", "error");
+            } else if (intStatus == '' || intNota == '' || competenciasSeleccionadas.length === 0) {
+                Swal.fire("Atención", "Complete los campos obligatorios.", "error");
                 return false;
             }
         
             let ajaxUrl = base_url + '/Notas/setNota'; 
             let formData = new FormData(formNotas);
-        
+
             fetch(ajaxUrl, {
                 method: 'POST',
                 body: formData
@@ -195,7 +197,7 @@ function getDataList(){
     $(document).ready(function() {
         
         
-        $('.listaAlumnos').select2({
+        $('#listaAlumnos').select2({
             dropdownParent: $('#modalFormNotas'),
             ajax: {
                 url: base_url+'/Notas/getAlumnosModal/'+idAula+"/"+idGrado+"/"+idCurso,
@@ -224,9 +226,9 @@ function getDataList(){
             }
         });     
         
-        $('.listaAlumnos').val(null).trigger('change.select2'); 
+        $('#listaAlumnos').val(null).trigger('change.select2'); 
 
-        $('.listaDocentes').select2({
+        $('#listaDocentes').select2({
             dropdownParent: $('#modalFormNotas'),
             ajax: {
                 url: base_url+'/Notas/getDocentes/'+idAula+"/"+idGrado+"/"+idCurso,
@@ -255,7 +257,7 @@ function getDataList(){
             }
         });     
         
-        $('.listaDocentes').val(null).trigger('change.select2'); 
+        $('#listaDocentes').val(null).trigger('change.select2'); 
     });        
 }
 
@@ -395,4 +397,75 @@ function fntDelNota(idNota) {
     });
 }
 
+// seleccionar la competencia
+function selectCompetencia(element) {
+    // Primero, eliminamos la clase 'selected' de todas las competencias
+    const allCompetencias = document.querySelectorAll('.competencia-item');
+    allCompetencias.forEach(item => item.classList.remove('selected'));
 
+    // Luego, añadimos la clase 'selected' a la competencia clickeada
+    element.classList.add('selected');
+
+    // Actualizamos el campo oculto con el id de la competencia seleccionada
+    const competenciaId = element.getAttribute('data-id');
+    document.querySelector('#competenciaSeleccionada').value = competenciaId;    
+};
+
+
+// Exportar a Excel
+let btnExportarNotas = document.getElementById('btnExport');
+if (btnExportarNotas) {
+    btnExportarNotas.addEventListener('click', function () {
+        // Obtener los datos necesarios
+        let bimestre = document.getElementById('selectBimestresExport').value;
+        let id_curso = document.getElementById('id_curso').getAttribute('data-id');
+        let id_aula = document.querySelector('.dataAula').getAttribute('data-id');
+        let id_grado = document.getElementById('id_grado').getAttribute('data-id');
+
+        // Validar si se seleccionó un bimestre
+        if (bimestre === "") {
+            Swal.fire("Atención", "Debe seleccionar un bimestre para exportar las notas.", "error");
+            return;
+        }
+
+        // Construir los datos a enviar
+        let formData = new FormData();
+        formData.append('bimestre', bimestre);
+        formData.append('id_curso', id_curso);
+        formData.append('id_aula', id_aula);
+        formData.append('id_grado', id_grado);
+
+        // Enviar solicitud al controlador
+        let url = base_url + '/Notas/exportarExcel';
+        fetch(url, {
+            method: 'POST',
+            body: formData,
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status && data.url_dowland) {
+                    // Descargar el archivo Excel
+                    const downloadUrl = data.url_dowland; // URL directa desde el servidor
+                    const link = document.createElement('a');
+                    link.href = downloadUrl;
+                    link.download = data.file_path.split('/').pop(); // Usa el nombre del archivo desde la ruta enviada
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                    // Después de la descarga, eliminar el archivo del servidor
+                    console.log(data.file_path);
+                    return fetch(base_url + '/Notas/deleteTempFile', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ file_path: data.file_path }),
+                    });
+                } else {
+                    throw new Error(data.msg || 'No se pudo exportar el archivo.');
+                }
+            })            
+            .catch(error => {
+                console.error('Error:', error);
+                Swal.fire("Error", "No se pudo procesar la solicitud.", "error");
+            });
+    });
+}

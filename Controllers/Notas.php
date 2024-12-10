@@ -18,9 +18,9 @@ class Notas extends Controllers
             header("Location:".base_url().'/dashboard');
         }
         $data['page_id'] = 8;
-        $data['page_tag'] = "Notas UNIMAT";
-        $data['page_name'] = "Notas_unimat";
-        $data['page_title'] = "Unimat<small> Notas</small>";
+        $data['page_tag'] = "Notas Concepción";
+        $data['page_name'] = "Notas_concepcion";
+        $data['page_title'] = "Concepcion<small> Notas</small>";
         
         // Generar un token CSRF y almacenarlo en la sesión
         if (empty($_SESSION['token'])) {
@@ -38,7 +38,7 @@ class Notas extends Controllers
             $data['Aulas'] = $this->model->cantidadAulas();
             $data['Cursos'] = $this->model->cantidadCursos();
             $data['Grados'] = $this->model->cantidadGrados();
-            $data['page_functions_js'] = "functions_notas.js";            
+            $data['page_functions_js'] = "functions_notas.js";                  
             $this->views->getView($this,"Notas",$data);
         }
     }
@@ -125,8 +125,8 @@ class Notas extends Controllers
                 $_SESSION['token'] = bin2hex(random_bytes(32));
             }        
             $data['token']=$_SESSION['token'];
-            $data['page_tag'] = "Notas UNIMAT";
-            $data['page_name'] = "Notas_unimat";
+            $data['page_tag'] = "Notas CONCEPCION";
+            $data['page_name'] = "Notas_concepcion";
             $data['page_title'] = "Unimat<small> Notas</small>";   
             $data['Periodo'] = $this->model->getPeriodo(PERIODO);
             $data['Aula'] = $this->model->getAula($id_aula);
@@ -138,8 +138,8 @@ class Notas extends Controllers
         }
     }
 
-    public function getNotas($params){
-        
+    public function getNotas($params){        
+       
         if ($_SESSION['permisosMod']['r']) {
             $arrParams = explode(",", $params);
             $id_aula = intval($arrParams[0]);
@@ -201,23 +201,51 @@ class Notas extends Controllers
         $intIdNota = intval($_POST['idNota']);
         $intIdAsignacion = isset($_POST['listaAlumnos']) ? intval($_POST['listaAlumnos']) : 0;
         $intIdDocente = isset($_POST['listaDocentes']) ? intval($_POST['listaDocentes']) : 0;
-        $nota1= intval($_POST['nota1']);
-        $nota2= intval($_POST['nota2']);
-        $nota3= intval($_POST['nota3']);
-        $nota4= intval($_POST['nota4']);
+        $nota= intval($_POST['nota']);        
+        $intIdCompetencia= isset($_POST['competenciaSeleccionada']) ? intval($_POST['competenciaSeleccionada']) : 0;
         $intStatus = intval($_POST['listStatus']);
+        $strTema= strClean($_POST['tema']);
+        $strBimestre= strClean($_POST['bimestres']);
+        $id_curso = intval($_POST['idCurso']);
         $request_nota = "";
+        switch ($id_curso){
+            case 1:
+                $tabla = TABLA_CURSO_1;
+                break;
+            case 2:
+                $tabla = TABLA_CURSO_2;
+                break;
+            case 3:
+                $tabla = TABLA_CURSO_3;
+                break;
+            case 4:
+                $tabla = TABLA_CURSO_4;
+                break;
+            case 5:
+                $tabla = TABLA_CURSO_5;
+                break;
+            case 6:
+                $tabla = TABLA_CURSO_6;
+                break;
+            case 7:
+                $tabla = TABLA_CURSO_7;
+                break;
+            default:
+                $tabla = null;
+                break;
+        }
+        
         if($intIdNota == 0)
         {
             //Crear
             if($_SESSION['permisosMod']['w']){
-                $request_nota = $this->model->insertNota($intIdAsignacion, $intIdDocente, $nota1, $nota2, $nota3, $nota4,$intStatus, PERIODO);
+                $request_nota = $this->model->insertNota($tabla, $intIdAsignacion, $intIdDocente, $nota,$intIdCompetencia, $strTema, $strBimestre,$intStatus, PERIODO);
                 $option = 1;
             }
         }else{
             //Actualizar
             if($_SESSION['permisosMod']['u']){
-                $request_nota = $this->model->updateNota($intIdNota, $nota1, $nota2, $nota3, $nota4,$intStatus);
+                $request_nota = $this->model->updateNota($intIdNota,$intStatus);
                 $option = 2;
             }
         }
@@ -303,7 +331,7 @@ class Notas extends Controllers
                 }
                 echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);            
         }
-        die();
+
         }
 
         public function getAlumnosModal($params){
@@ -321,8 +349,142 @@ class Notas extends Controllers
                 }
                 echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);            
         }
-        die();
         }
+       
+        public function exportarExcel()
+        {
+            
+            if ($_SESSION['permisosMod']['r']) {
+                // Validar y obtener los datos enviados
+                $bimestre = $_POST['bimestre'] ?? '';
+                $id_curso = intval($_POST['id_curso'] ?? 0);
+                $id_aula = intval($_POST['id_aula'] ?? 0);
+                $id_grado = intval($_POST['id_grado'] ?? 0);
+                
+                // Validación básica
+                if (empty($bimestre) || $id_curso === 0 || $id_aula === 0 || $id_grado === 0) {
+                    $arrResponse = array('status' => false, 'msg' => 'Datos incorrectos.');
+                    echo(json_encode($arrResponse));                   
+                    exit;
+                }
+            
+                switch ($id_curso){
+                    case 1:
+                        $tabla = TABLA_CURSO_1;
+                        break;
+                    case 2:
+                        $tabla = TABLA_CURSO_2;
+                        break;
+                    case 3:
+                        $tabla = TABLA_CURSO_3;
+                        break;
+                    case 4:
+                        $tabla = TABLA_CURSO_4;
+                        break;
+                    case 5:
+                        $tabla = TABLA_CURSO_5;
+                        break;
+                    case 6:
+                        $tabla = TABLA_CURSO_6;
+                        break;
+                    case 7:
+                        $tabla = TABLA_CURSO_7;
+                        break;
+                    default:
+                        $tabla = null;
+                        break;
+                }
+
+                $resultados = $this->model->getNotasPromediadas($tabla, $bimestre, $id_curso, $id_aula, $id_grado, PERIODO);
+                
+                if (is_array($resultados)) {
+                    $asignaciones = $resultados['asignaciones'];
+                    $competencias = $resultados['competencias'];
+                    $notas = $resultados['notas'];
+
+                    // Reorganizar los datos en un formato adecuado para el Excel
+                    $dataExcel = [];
+                    foreach ($asignaciones as $asignacion) {
+                        $row = [
+                            'alumno' => $asignacion['nombres']
+                        ];
+
+                        foreach ($competencias as $competencia) {
+                            // Busca la nota para esta asignación y competencia
+                            $nota = array_filter($notas, function ($nota) use ($asignacion, $competencia) {
+                                return $nota['id_asignacion'] === $asignacion['id_asignacion'] &&
+                                    $nota['id_competencia'] === $competencia['id_competencia'];
+                            });
+
+                            // Si hay nota, agrégala; si no, deja en blanco
+                            $row[$competencia['nombre_competencias']] = !empty($nota) ? array_values($nota)[0]['promedio'] : '';
+                        }
+
+                        $dataExcel[] = $row;
+                    }
+                    
+                    $spreadsheet = new \PhpOffice\PhpSpreadsheet\Spreadsheet();
+                    $sheet = $spreadsheet->getActiveSheet();
+
+                    // Encabezados del archivo Excel
+                    $sheet->setCellValue('A1', 'Alumno');
+                    $col = 'B';
+                    foreach ($competencias as $competencia) {
+                        $sheet->setCellValue($col . '1', $competencia['nombre_competencias']);
+                        $col++;
+                    }
+
+                    // Agregar datos al archivo Excel
+                    $fila = 2; // Iniciar en la fila 2 (debajo de los encabezados)
+                    foreach ($dataExcel as $dataRow) {
+                        $col = 'A';
+                        foreach ($dataRow as $key => $value) {
+                            $sheet->setCellValue($col . $fila, $value);
+                            $col++;
+                        }
+                        $fila++;
+                    }
+
+                    // Estilizar los encabezados
+                    $sheet->getStyle('A1:' . $col . '1')->getFont()->setBold(true);               
+            
+                    $tempDir = __DIR__ . '/../Assets/temporal/';
+                    if (!is_dir($tempDir)) {
+                        mkdir($tempDir, 0777, true);
+                    }
+                    $auxPath='notas_agrupadas_' . uniqid() . '.xlsx';
+                    $tempFilePath = $tempDir .$auxPath;
+                    $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spreadsheet);
+                    $writer->save($tempFilePath);
+
+
+                    // Enviar la ruta del archivo al cliente
+                    $arrResponse = array('status' => true, 'file_path' => $tempFilePath, 'url_dowland'=>media().'/temporal/'.$auxPath);
+                    echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+                    exit;
+
+                } else {
+                    $arrResponse = array('status' => false, 'msg' => 'No se encontraron datos para exportar.');
+                    echo(json_encode($arrResponse, JSON_UNESCAPED_UNICODE));
+                    exit;
+                }
+        
+        }
+
+    }
+
+    public function deleteTempFile()
+{
+    $input = json_decode(file_get_contents('php://input'), true);
+    $filePath = $input['file_path'] ?? '';
+
+    if (file_exists($filePath)) {
+        unlink($filePath); // Eliminar el archivo
+        echo json_encode(['status' => true, 'msg' => 'Archivo eliminado.']);
+    } else {
+        echo json_encode(['status' => false, 'msg' => 'Archivo no encontrado.']);
+    }
+}
 
 
 }

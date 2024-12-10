@@ -8,7 +8,8 @@
 
 		public function notFound()
 		{
-			$pageContent = getPageRout('not-found');
+			// $pageContent = getPageRout('not-found');
+			$pageContent="";
 			if(empty($pageContent)){
 				header("Location: ".base_url());
 			}else{

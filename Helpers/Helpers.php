@@ -377,7 +377,8 @@
     function getInfoPage(int $idpagina){
         require_once("Libraries/Core/Mysql.php");
         $con = new Mysql();
-        $sql = "SELECT * FROM post WHERE idpost = $idpagina";
+        // $sql = "SELECT * FROM post WHERE idpost = $idpagina";
+        $sql="";
         $request = $con->select($sql);
         return $request;
     }
@@ -385,7 +386,8 @@
     function getPageRout(string $ruta){
         require_once("Libraries/Core/Mysql.php");
         $con = new Mysql();
-        $sql = "SELECT * FROM post WHERE ruta = '$ruta' AND status != 0 ";
+        // $sql = "SELECT * FROM post WHERE ruta = '$ruta' AND status != 0 ";
+        $sql="";
         $request = $con->select($sql);
         if(!empty($request)){
             $request['portada'] = $request['portada'] != "" ? media()."/images/uploads/".$request['portada'] : "";
@@ -396,7 +398,8 @@
     function viewPage(int $idpagina){
         require_once("Libraries/Core/Mysql.php");
         $con = new Mysql();
-        $sql = "SELECT * FROM post WHERE idpost = $idpagina ";
+        // $sql = "SELECT * FROM post WHERE idpost = $idpagina ";
+        $sql="";
         $request = $con->select($sql);
         if( ($request['status'] == 2 AND isset($_SESSION['permisosMod']) AND $_SESSION['permisosMod']['u'] == true) OR $request['status'] == 1){
             return true;        

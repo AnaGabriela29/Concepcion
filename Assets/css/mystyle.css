@@ -260,3 +260,17 @@ body{
     width: 100% !important;
 
   }
+
+  /* estilos para la competencia */
+  .competencia-item {
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.competencia-item.selected {
+    background-color: #007bff; /* Color de fondo cuando está seleccionada */
+    color: white; /* Color de texto cuando está seleccionada */
+    border-color: #0056b3; /* Color del borde cuando está seleccionada */
+}

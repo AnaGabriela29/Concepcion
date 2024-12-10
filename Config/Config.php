@@ -27,7 +27,7 @@
         define('DB_USER', $_ENV['DB_USER']);
         define('DB_PASSWORD', $_ENV['DB_PASS']);
         define('DB_NAME', $_ENV['DB_NAME']);
-        define('BASE_URL', 'https://colegiounimat.com');
+        define('BASE_URL', 'https://.com');
 	}
 	// Charset para la base de datos
 	define('DB_CHARSET', 'utf8');

@@ -11,14 +11,13 @@ class NotasModel extends Mysql{
     private $intIdAlumno;
     private $intIdPeriodo;
     private $intIdNota;
-    private $intNota1;
-    private $intNota2;
-    private $intNota3;
-    private $intNota4;
+    private $intNota;    
     private $intStatus;
     private $intIdAsignacion;
     private $strTabla;
-
+    private $strTema;
+    private $strBimestre;
+    private $intCompetencia;
     public function __construct()
     {
         parent::__construct();
@@ -184,28 +183,25 @@ class NotasModel extends Mysql{
         return $request;
     }
 
-    public function insertNota(int $asignacion, int $docente, int $nota1=null, int $nota2=null, int $nota3=null, int $nota4=null, int $status, int $periodo){
+    public function insertNota(string $tabla, int $asignacion, int $docente, int $nota,int $idCompetencia , string $tema, string $bimestre,int $status, int $periodo){
+        $this->strTabla=$tabla;
         $this->intIdDocente=$docente;
         $this->intIdAsignacion=$asignacion;
-        $this->intNota1=$nota1;
-        $this->intNota2=$nota2;
-        $this->intNota3=$nota3;
-        $this->intNota4=$nota4;
+        $this->intNota=$nota;
+        $this->intCompetencia=$idCompetencia;
+        $this->strTema=$tema;
+        $this->strBimestre=$bimestre;       
         $this->intStatus=$status;
         $this->intIdPeriodo=$periodo;
-        //buscamos si existe un registro existente
-        $sql = "SELECT n.id_nota FROM nota n WHERE n.id_docente = '{$this->intIdDocente}' AND n.id_asignacion = '{$this->intIdAsignacion}' AND n.status!=0 ";
-        $request = $this->select_all($sql);
-
-        if(empty($request))
-        {   //registramos una nota modo administrador
-            $query_insert  = "INSERT INTO nota(id_asignacion,id_docente, nota_1, nota_2, nota_3, nota_4, id_periodo, fecha, date_modificated,status) VALUES(?,?,?,?,?,?,?,NOW(),NOW(),?)";
-            $arrData = array($this->intIdAsignacion, $this->intIdDocente, $this->intNota1, $this->intNota2, $this->intNota3, $this->intNota4, $this->intStatus, $this->intIdPeriodo);
+        
+            $query_insert  = "INSERT INTO $this->strTabla(id_asignacion,id_docente, nota, tema, id_competencia, bimestre , id_periodo, fecha, date_modificated,status) VALUES(?,?,?,?,?,?,?,NOW(),NOW(),?)";
+            $arrData = array($this->intIdAsignacion, $this->intIdDocente, $this->intNota, $this->strTema, $this->intCompetencia, $this->strBimestre, $this->intIdPeriodo, $this->intStatus);
             $request_insert = $this->insert($query_insert,$arrData);
-            $return = $request_insert;
-        }else{
-            $return = "exist";
-        }
+            if($request_insert){
+                $return = $request_insert;
+            }else{
+                $return = 'error';
+            }     
         return $return;
     }
 
@@ -240,13 +236,10 @@ class NotasModel extends Mysql{
 
     public function updateNota(int $idNota, int $nota1=null, int $nota2=null, int $nota3=null, int $nota4=null, int $status){
         $this->intIdNota = $idNota;
-        $this->intNota1=$nota1;
-        $this->intNota2=$nota2;
-        $this->intNota3=$nota3;
-        $this->intNota4=$nota4;
+        
         $this->intStatus=$status;
         $sql = "UPDATE nota SET nota_1=?, nota_2=?, nota_3=?, nota_4=?, date_modificated=NOW() , status=?  WHERE id_nota='{$this->intIdNota}' ";
-				$arrData = array($this->intNota1, $this->intNota2, $this->intNota3, $this->intNota4, $this->intStatus);
+				$arrData = array($this->intStatus);
 				$request = $this->update($sql,$arrData);			
 		return $request;
         
@@ -303,11 +296,88 @@ class NotasModel extends Mysql{
     
     public function getCompetencias(int $id_curso){
         $this->intIdCurso=$id_curso;
-        $sql="SELECT nombre_competencias FROM competencia WHERE id_curso='{$this->intIdCurso}'";
+        $sql="SELECT id_competencia,nombre_competencias FROM competencia WHERE id_curso='{$this->intIdCurso}'";
         $request=$this->select_all($sql);
         return $request;
     }
     
+    public function getNotasPromediadas(string $tabla, string $bimestre, int $id_curso, int $id_aula, int $id_grado, int $periodo)
+{
+    $this->intIdCurso = $id_curso;
+    $this->intIdAula = $id_aula;
+    $this->intIdGrado = $id_grado;
+    $this->strBimestre = $bimestre;
+    $this->intIdPeriodo = $periodo;
+
+    // Consulta para obtener asignaciones válidas
+    $query = "SELECT 
+                a.id_asignacion, CONCAT(u.nombres, ' ', u.apellidos) AS nombres
+              FROM
+                asignacion a
+              JOIN
+                usuario u ON a.id_usuario = u.id_usuario
+              WHERE
+                a.id_curso = '{$this->intIdCurso}' 
+                AND a.id_aula = '{$this->intIdAula}' 
+                AND a.id_grado = '{$this->intIdGrado}' 
+                AND a.id_periodo = '{$this->intIdPeriodo}' 
+                AND a.status != 0
+                ORDER BY u.nombres ASC, u.apellidos ASC
+                ";
+
+    $responseAsignaciones = $this->select_all($query);
+
+    if (!empty($responseAsignaciones)) {
+        // Obtener IDs de asignaciones válidas
+        $asignacionIds = array_column($responseAsignaciones, 'id_asignacion');
+
+        // Consulta para obtener competencias válidas
+        $query = "SELECT id_competencia, nombre_competencias 
+                  FROM competencia 
+                  WHERE id_curso = '{$this->intIdCurso}'";
+
+        $responseCompetencias = $this->select_all($query);
+
+        if (!empty($responseCompetencias)) {
+            // Obtener IDs de competencias válidas
+            $competenciaIds = array_column($responseCompetencias, 'id_competencia');
+
+            // Consulta para obtener las notas agrupadas por asignación y competencia
+            $asignacionIdsString = implode(',', $asignacionIds);
+            $competenciaIdsString = implode(',', $competenciaIds);
+
+            $query = "SELECT 
+                        n.id_asignacion,
+                        n.id_competencia,
+                        AVG(n.nota) AS promedio,
+                        c.nombre_competencias
+                      FROM 
+                        $tabla n
+                      JOIN 
+                        competencia c ON n.id_competencia = c.id_competencia
+                      WHERE 
+                        n.bimestre = '{$this->strBimestre}'
+                        AND n.id_periodo = '{$this->intIdPeriodo}'
+                        AND n.id_asignacion IN ({$asignacionIdsString})
+                        AND n.id_competencia IN ({$competenciaIdsString})
+                      GROUP BY 
+                        n.id_asignacion, n.id_competencia";
+            
+            $responseNotas = $this->select_all($query);
+
+            return [
+                'asignaciones' => $responseAsignaciones,
+                'competencias' => $responseCompetencias,
+                'notas' => $responseNotas
+            ];
+        } else {
+            return "No se encontraron competencias para el curso.";
+        }
+    } else {
+        return "No hay asignaciones disponibles para los criterios seleccionados.";
+    }
+}
+
 
 }
 ?>

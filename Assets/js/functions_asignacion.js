@@ -201,44 +201,42 @@ document.addEventListener('DOMContentLoaded', function(){
 
 
 $('#tableAsignaciones').DataTable();
-
-function getDataList(){
-    $(document).ready(function() {
-        
-        
-        $('.listaUsuarios').select2({
+function getDataList() {
+    $(document).ready(function () {
+        $('#listaUsuarios').select2({
+            width: '100%',
             dropdownParent: $('#modalFormAsignacion'),
             ajax: {
-                url: base_url+'/Asignacion/getUsuarios',
+                url: '/concepcion/Asignacion/getUsuarios',
                 dataType: 'json',
-                processResults: function (data) {
+                delay: 250, // Retarda la búsqueda para no hacer demasiadas solicitudes
+                processResults: function (data) {    
                     return {
-                        results: data.data.map(function(item) {
-                            // console.log(item);
+                        results: data.data.map(function (item) {
                             return {
                                 id: item.id_usuario,
-                                text: item.nombres,
-                                
+                                text: item.nombres
                             };
                         })
                     };
-                }
+                },
+                cache: true  // Almacena en caché para no hacer nuevas solicitudes repetidas
             },
             templateResult: function (data) {
                 if (data.loading) {
                     return data.text;
                 }
-                var markup = data.text;
-                return markup;
+                return data.text;
             },
             templateSelection: function (data) {
                 return data.text || data.id;
             }
-        });     
-        
-        $('.listaUsuarios').val(null).trigger('change.select2'); 
-    });        
+        });
+    
+    });
+    
 }
+
 
 function openModal(){
 

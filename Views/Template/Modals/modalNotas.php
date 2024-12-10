@@ -3,20 +3,37 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header headerRegister">
-                <h5 class="modal-title" id="titleModal">Notas UNIMAT</h5>
+                <h5 class="modal-title" id="titleModal">Notas Concepcion</h5>
                 <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body container">
                 <form id="formNotas" name="formNotas" class="form-horizontal row">
                     <input type="hidden" id="csrf" class="csrf" name="csrf" value="<?php echo $data['token']?>">
-                    <input type="hidden" id="idNota" name="idNota" value="">                              
-                    <div class="box-competencias">
-                        
+                    <input type="hidden" id="idNota" name="idNota" value="">     
+                    <input type="hidden" id="idCurso" name="idCurso" value="<?=$data['Curso']['id_curso']?>">                         
+                    <div class="box-competencias row">
+                    <input type="hidden" id="competenciaSeleccionada" name="competenciaSeleccionada" value="">
 
+                        <?php 
+                        // Verificamos si hay competencias y las mostramos
+                        if (!empty($data['competencias'])):
+                            foreach ($data['competencias'] as $competencia): ?>
+                                <div class="p-2 col-6 col-md-4">
+                                <div class="competencia-item mb-3 rounded bg-color-white text-black" 
+                                    data-id="<?php echo $competencia['id_competencia']; ?>" 
+                                    onclick="selectCompetencia(this)">
+                                    <h5 class="fw-bold"><?php echo htmlspecialchars($competencia['nombre_competencias']); ?></h5>
+                                    <input type="hidden" name="competencias[<?php echo $competencia['id_competencia']; ?>]" value="<?php echo $competencia['id_competencia']; ?>">
+                                </div>
+                                </div>
+                                
+                            <?php endforeach;
+                        endif; ?>
                     </div>
+
                     <div class="row">
                         <div class="box-nota-aux d-flex flex-column col-12 col-md-6 mb-3">
-                            <label for="listaAlumnos">Nombre del Alumno: <span id="selectNombreAlumno"> </span></label>
+                            <label for="listaAlumnos">Nombre de la Alumna: <span id="selectNombreAlumno"> </span></label>
                             <select id="listaAlumnos" class="listaAlumnos" name="listaAlumnos">                       
                         </select>
                         </div>
@@ -33,7 +50,7 @@
                         </div>
                         <div class="">
                             <label for="tema">Escriba el tema</label>
-                            <input type="text" name="tema" class="form-control" placeholder="escriba el tema" >
+                            <input type="text" id="tema" name="tema" class="form-control" placeholder="escriba el tema" >
                         </div>
                         <div>
                             <label for="selectbimestres fw-bold">Elija un bimestre</label>

@@ -27,20 +27,25 @@
             <p>Aula: <span class="fs-5 dataAula" data-id="<?= $data['Aula']['id_aula']?>"><?= $data['Aula']['nombre'] ?></span></p>
         </div>
         <div class="d-flex justify-content-between">
-            <p>Curso: <span class="fs-5 dataCurso" data-id="<?= $data['Curso']['id_curso']?>"><?= $data['Curso']['nombre'] ?></span></p>
-            <div>
-              <label for="selectbimestres fw-bold">Elija un bimestre</label>
-              <select class="form-select" name="bimestres" id="selectBimestres">
-                <option value="">--Seleccione un bimestre--</option>
-                <option value="primerbimestre" selected>primer bimestre</option>
-                <option value="segundobimestre">segundo bimestre</option>
-                <option value="tercerbimestre">tercer bimestre</option>
-                <option value="cuartobimestre">cuarto bimestre</option>                
-              </select>
-            </div>
+            <p>Curso: <span class="fs-5 dataCurso" id="id_curso" data-id="<?= $data['Curso']['id_curso']?>"><?= $data['Curso']['nombre'] ?></span></p>
+            <div class="">
+              <div>
+                <label for="selectbimestres fw-bold">Elija un bimestre para exportar las notas en excel</label>
+                <select class="form-select" name="bimestres" id="selectBimestresExport">
+                  <option value="">--Seleccione un bimestre--</option>
+                  <option value="primerbimestre">primer bimestre</option>
+                  <option value="segundobimestre">segundo bimestre</option>
+                  <option value="tercerbimestre">tercer bimestre</option>
+                  <option value="cuartobimestre">cuarto bimestre</option>                
+                </select>
+              </div>
+              <div>
+              <button type="button" id="btnExport" class="rounded bg-info-subtle my-2">Exportar Notas <i class="bi bi-file-earmark-excel-fill text-success"></i></button>
+            </div>  
+            </div>            
         </div>
         <div>
-            <p>Grado: <span class="fs-5 dataGrado" data-id="<?= $data['Grado']['id_grado']?>"><?= $data['Grado']['nombre'] ?></span></p>
+            <p>Grado: <span class="fs-5 dataGrado" id="id_grado" data-id="<?= $data['Grado']['id_grado']?>"><?= $data['Grado']['nombre'] ?></span></p>
         </div>
 
     </div>
