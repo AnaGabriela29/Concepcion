@@ -15,6 +15,12 @@
 
 @font-face {
     font-family: 'GFS Didot';
+    src: url('../images/fonts/Alata-Regular.ttf') format('ttf');
+    font-weight: normal; /* Peso de la fuente */
+    font-style: normal; /* Estilo de la fuente */
+}
+@font-face {
+    font-family: 'GFS Didot';
     src: url('../colegio/images/fonts/GFS_Didot/GFSDidot-Regular.ttf') format('ttf');
     /* Agrega otros formatos si los tienes */
     font-weight: normal; /* Peso de la fuente */
@@ -22,6 +28,11 @@
 }
 body{
     font-family: 'GFS Didot';
+}
+.alata{
+    font-family: "Alata", sans-serif;
+    font-weight: 400;
+    font-style: normal;
 }
 
 .bg-color-blue-gray{

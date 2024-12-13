@@ -22,7 +22,7 @@
                                 <div class="competencia-item mb-3 rounded bg-color-white text-black" 
                                     data-id="<?php echo $competencia['id_competencia']; ?>" 
                                     onclick="selectCompetencia(this)">
-                                    <h5 class="fw-bold"><?php echo htmlspecialchars($competencia['nombre_competencias']); ?></h5>
+                                    <h6 class="fw-bold"><?php echo htmlspecialchars($competencia['nombre_competencias']); ?></h6>
                                     <input type="hidden" name="competencias[<?php echo $competencia['id_competencia']; ?>]" value="<?php echo $competencia['id_competencia']; ?>">
                                 </div>
                                 </div>
@@ -43,16 +43,16 @@
                         </select>
                         </div> 
                                         
-                        <div class=" d-flex flex-column col-6 col-md-4 mb-3">
+                        <div class=" d-flex flex-column col-12 col-md-6 mb-3">
                             <label for="nota">Nota</label>
                             <input id="nota" type="number" min="0" max="20" class="nota" name="nota" value="">                       
                             </input>
                         </div>
-                        <div class="">
+                        <div class="col-12 col-md-6">
                             <label for="tema">Escriba el tema</label>
                             <input type="text" id="tema" name="tema" class="form-control" placeholder="escriba el tema" >
                         </div>
-                        <div>
+                        <div class="col-12 col-md-6">
                             <label for="selectbimestres fw-bold">Elija un bimestre</label>
                             <select class="form-select" name="bimestres" id="selectBimestres">
                                 <option value="">--Seleccione un bimestre--</option>
@@ -63,7 +63,7 @@
                             </select>
                         </div>                                                  
 
-                        <div class="form-group d-flex flex-column col-6 col-md-4 mb-3">
+                        <div class="form-group d-flex flex-column col-12 col-md-6 col-md-4 mb-3">
                             <label for="exampleSelect1">Estado</label>
                             <select class="form-control" id="listStatus" name="listStatus" required="">
                                 <option value="1">Activo</option>
@@ -73,7 +73,7 @@
                     </div>
                     
 
-                    <div class="tile-footer">
+                    <div class="tile-footer text-center">
                         <button id="btnActionForm" class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i><span id="btnText">Guardar</span></button>&nbsp;&nbsp;&nbsp;
                         <button class="btn btn-danger" type="button" data-bs-dismiss="modal"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cerrar</button>
                     </div>

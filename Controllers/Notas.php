@@ -168,6 +168,15 @@ class Notas extends Controllers
                 case 7:
                     $tabla = TABLA_CURSO_7;
                     break;
+                    case 8:
+                        $tabla = TABLA_CURSO_8;
+                        break;
+                    case 9:
+                        $tabla = TABLA_CURSO_9;
+                        break;
+                    case 10:
+                        $tabla = TABLA_CURSO_10;
+                        break;
                 default:
                     $tabla = null;
                     break;
@@ -230,6 +239,15 @@ class Notas extends Controllers
             case 7:
                 $tabla = TABLA_CURSO_7;
                 break;
+                case 8:
+                    $tabla = TABLA_CURSO_8;
+                    break;
+                case 9:
+                    $tabla = TABLA_CURSO_9;
+                    break;
+                case 10:
+                    $tabla = TABLA_CURSO_10;
+                    break;
             default:
                 $tabla = null;
                 break;
@@ -389,6 +407,15 @@ class Notas extends Controllers
                         break;
                     case 7:
                         $tabla = TABLA_CURSO_7;
+                        break;
+                    case 8:
+                        $tabla = TABLA_CURSO_8;
+                        break;
+                    case 9:
+                        $tabla = TABLA_CURSO_9;
+                        break;
+                    case 10:
+                        $tabla = TABLA_CURSO_10;
                         break;
                     default:
                         $tabla = null;

@@ -11,15 +11,15 @@
          </div>
 
          <!-- Sidebar Navigation -->
-         <ul class="sidebar-nav gfs-didot-regular bg-color-sky-blue">
+         <ul class="sidebar-nav gfs-didot-regular bg-color-sky-blue mt-5">
 
              <li class="sidebar-item" ata-toggle="tooltip" title="Estamos trabajando en esta pagina">
                  
              </li>
              <?php if (!empty($_SESSION['permisos'][1]['r'])) { ?>
                  <li class="sidebar-item">
-                     <a href="<?= base_url() ?>/dashboard" class="sidebar-link color-gray">
-                         <i class="bi bi-speedometer"></i>
+                     <a href="<?= base_url() ?>/dashboard" class="sidebar-link color-gray ">
+                         <i class="bi bi-speedometer "></i>
                          Dashboard
                      </a>
                  </li>
@@ -116,7 +116,7 @@
          </button>
 
          <div class="">
-             <h2 class="fs-3 m-0">Colegio Concepcion</h2>
+             <h2 class="fs-3 m-0 fs-1 fw-bold alata">Colegio Concepcion</h2>
          </div>
 
          <!-- Default dropstart button -->

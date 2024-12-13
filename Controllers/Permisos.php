@@ -18,7 +18,6 @@
 		{
 
 			$rolid = intval($idrol);	
-			echo "Siempre entra";
 			if($rolid > 0)
 			{
 				$arrModulos = $this->model->selectModulos();

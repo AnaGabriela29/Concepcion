@@ -83,7 +83,10 @@
 	const TABLA_CURSO_4 = "nota_desarrollo_personal";
 	const TABLA_CURSO_5 = "nota_arte";
 	const TABLA_CURSO_6 = "nota_ingles";
-	const TABLA_CURSO_7= "nota_fisica";	
+	const TABLA_CURSO_7= "nota_fisica";
+	const TABLA_CURSO_8 = "nota_ciencias_sociales";
+	const TABLA_CURSO_9 = "nota_educacion_trabajo";
+	const TABLA_CURSO_10 = "nota_educacion_religiosa";
 
 	//Periodo
 	const PERIODO=1;
